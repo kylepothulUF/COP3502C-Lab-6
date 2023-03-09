@@ -61,6 +61,26 @@ def encode():
     print('Your password has been encoded and stored!')
     user_input_menu()
 
+def decode():
+    global ENCODED_PASSWORD
+    old_password = ENCODED_PASSWORD
+    user_password = input('Please enter your password to encode: ')
+
+    # decreases the value of each digit place in the inputted password by 3
+    for index in range(0, len(user_password)):
+        encoded_value = int(user_password[index]) + 3
+
+        # if the value ends up lower than 0, increase the value by 10 so it stays positive
+        if encoded_value < 0:
+            encoded_value += 10
+
+        # adds the encoded digit to the new encoded password
+        ENCODED_PASSWORD += str(encoded_value)
+
+    # tells the user their password was encoded and redisplays the input menu
+    print('The encoded password is ', old_password, ', and the original password is ', ENCODED_PASSWORD, sep='')
+    user_input_menu()
+
 
 # starts the application
 if __name__ == '__main__':
